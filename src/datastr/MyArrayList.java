@@ -59,5 +59,18 @@ public class MyArrayList {
 	}
 	
 	//resize
+	private void resize() {
+		int newSize = (howManyElements < 200) ? (size * 2) : (int)(size * 1.5);
+		char[] newList = new char[newSize];
+		
+		for(int i = 0; i < howManyElements; i++) {
+			newList[i] = list[i];
+		}
+		
+		list = newList;
+		size = newSize;
+		System.gc();
+		
+	}
 
 }
