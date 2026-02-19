@@ -22,5 +22,42 @@ public class MyArrayList {
 	}
 	
 	//funkcijas
+	private boolean isEmpty() {
+		//1. garais pieraksts
+		/*if(howManyElements == 0) {
+			return true;
+		}
+		else
+		{
+			return false;
+		}*/
+		//2.īsais if-else
+		//return (howManyElements == 0) ? true : false;
+		//Cits piemērs īsajam if-else
+		/*
+		int aaa = 0;
+		if(howManyElements == 0) {
+			aaa = 3*100;
+		}
+		else
+		{
+			aaa = 400/3;
+		}
+		
+		aaa =(howManyElements == 0)? (3*100) : (400/3) ;
+		*/
+		
+				
+		//3. ar atgriezto vertību
+		return (howManyElements == 0);
+		
+	}
+	
+	private boolean isFull() {
+		//return (howManyElements==size) ? true : false;
+		return (howManyElements==size);
+	}
+	
+	//resize
 
 }
