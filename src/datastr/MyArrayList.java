@@ -112,4 +112,36 @@ public class MyArrayList {
 		return howManyElements;
 	}
 	
+	//1. funkcijas deklarācija
+	public void remove(int index) throws Exception {
+		if(isEmpty()) {
+			throw new Exception("Saraksts ir tukšs, līdz ar to neko nevar izdzēst");
+		}
+		if(index < 0){
+			throw new IllegalArgumentException("Nevar izdzēst elementu, jo indekss ir negatīvs");
+		}
+		if(index >= howManyElements) {
+			throw new IllegalArgumentException("Nav iespējams idzēst elementu, jo indekss ir lielāks vai vienāds ar elementu skaitu");
+		}
+		
+		for(int i = index; i < howManyElements-1; i++) {
+			list[i] = list[i+1];
+		}
+		
+		list[howManyElements-1] = ' ';//priekš referenču vērtībām būs null
+		howManyElements--; 
+		//abas iepriekšējas koda rindas var optimizēt -> list[--howManyElements] = ' ';
+
+	}
+
+	
+	//5. for cikls no index un veikt kopēšanu uz kreiso pusi pa 1
+	//6. samazināt howManyElements
+	
+	
+	
+	
+	
+	
+	
 }
