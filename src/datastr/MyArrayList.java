@@ -215,8 +215,27 @@ public class MyArrayList {
 		
 	}
 	
+	public void print() throws Exception{
+		if(isEmpty()) {
+			throw new Exception("Saraksts ir tukšs, līdz ar to nav ieespējams veikt izprintēšanu");
+		}
+		
+		for(int i = 0; i < howManyElements; i++) {
+			System.out.print(list[i] + " ");
+		}
+		System.out.println();
+		
+	}
 	
-	
+	public void makeEmpty() {
+		//TODO ja velas, tad pieprasit apstiprinajumu no lietotaja, ka nav tukss un vai velas dzest
+		list = null;//atkabinu referenci no datiem un tādā veida zaudēju datus
+		System.gc();
+		howManyElements = 0;
+		size = DEFAULT_SIZE;
+		list = new char[size];
+		
+	}
 	
 	
 	
