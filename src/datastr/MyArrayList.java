@@ -196,6 +196,29 @@ public class MyArrayList {
 		return nextElements;
 		
 	}
+	//TODO var iedot ka ievades datu - augošā vai dilstošā secībā
+	public void sort() throws Exception{
+		if(isEmpty()) {
+			throw new Exception("Saraksts ir tukšs, līdz ar to nav ieespējams veikt kārtošanu");
+		}
+		//TODO ja vēlas, var parbaudīt,ka ir tikai 1 elements		
+		for(int i = 0; i < howManyElements; i++) {
+			for(int j = 0; j < howManyElements; j++) {
+				if(list[i] > list[j]) {
+					char temp = list[i];
+					list[i] = list[j];
+					list[j] = temp;
+				}
+			}
+		}
+		
+		
+	}
+	
+	
+	
+	
+	
 	
 	
 	
