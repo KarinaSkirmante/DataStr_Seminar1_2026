@@ -153,24 +153,34 @@ public class MyArrayList {
 	}
 	
 	
-	public ArrayList<Integer> search(char element) throws Exception{
+	public int[] search(char element) throws Exception{
 		if(isEmpty()) {
 			throw new Exception("Saraksts ir tukšs, līdz ar to nav ieespējams veikt elementa meklēšanu");
 		}
 		
-		ArrayList<Integer> indexArrayList = new ArrayList<Integer>();
-		for(int i = 0; i < howManyElements; i++) {
+		int howManyIndexes = 0;
+		for(int i = 0;i < howManyElements; i++) {
 			if(list[i] == element) {
-				indexArrayList.add(i);
+				howManyIndexes++;
 			}
 		}
 		
-		if(indexArrayList.isEmpty()) {
+		
+		int[] indexArray = new int[howManyIndexes];
+		int indexForIndexesArray = 0;
+		for(int i = 0; i < howManyElements; i++) {
+			if(list[i] == element) {
+				indexArray[indexForIndexesArray] = i;
+				indexForIndexesArray++;
+			}
+		}
+		
+		if(indexForIndexesArray == 0) {
 			throw new Exception("Meklētais elements " 
 		+ element + " neatrodas sarakstā");
 		}
 		
-		return indexArrayList;
+		return indexArray;
 		
 	}
 	
