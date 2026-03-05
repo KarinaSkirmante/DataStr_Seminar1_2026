@@ -134,9 +134,21 @@ public class MyArrayList {
 
 	}
 
-	
-	//5. for cikls no index un veikt kopēšanu uz kreiso pusi pa 1
-	//6. samazināt howManyElements
+	public char get(int index) throws Exception {
+		if(isEmpty()) {
+			throw new Exception("Saraksts ir tukšs, līdz ar to nevar iegūt elementu");
+		}
+		
+		if(index < 0){
+			throw new IllegalArgumentException("Nevar iegūt elementu, jo indekss ir negatīvs");
+		}
+		
+		if(index >= howManyElements) {
+			throw new IllegalArgumentException("Nav iespējams iegūt elementu, jo indekss ir lielāks vai vienāds ar elementu skaitu");
+		}
+		
+		return list[index];
+	}
 	
 	
 	
