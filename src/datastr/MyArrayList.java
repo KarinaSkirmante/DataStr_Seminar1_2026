@@ -73,4 +73,17 @@ public class MyArrayList {
 		
 	}
 
+	public void add(char element) {
+		if(isFull()) {
+			resize();
+		}
+		
+		list[howManyElements++] = element;
+		//howManyElements++; <- palielināšanu veikt cita koda rindiņā
+	}
+	
+	
+	
+	
+	
 }
