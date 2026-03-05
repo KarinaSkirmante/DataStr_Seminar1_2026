@@ -68,7 +68,7 @@ public class MyArrayList {
 		}
 		
 		list = newList;
-		size = newSize;
+		size = newSize;	
 		System.gc();
 		
 	}
@@ -82,8 +82,31 @@ public class MyArrayList {
 		//howManyElements++; <- palielināšanu veikt cita koda rindiņā
 	}
 	
-	
-	
+	public void add(char element, int index) throws IllegalArgumentException  {
+		if(index < 0){
+			throw new IllegalArgumentException("Nav iespējams pievienot elementu, jo indekss ir negatīvs");
+		}
+
+		if(index > howManyElements) {
+			throw new IllegalArgumentException("Nav iespējams pievienot elementu, jo indekss ir lielāks par atļauto");
+		}
+		
+		if(index == howManyElements) {//gadījums, ja grib kā pēdejo saraksta elemntu pievienot
+			add(element);
+			return;//apstādina funkcija darbību. ja nelietojam return, tad lieotjam elso bloku pēc if
+		}
+		
+		if(isFull()) {
+			resize();
+		}
+		
+		for(int i = howManyElements; i > index; i--) {
+			list[i] = list[i-1];
+		}
+
+		list[index] = element;
+		howManyElements++;
+	}
 	
 	
 }
