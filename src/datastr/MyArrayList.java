@@ -2,16 +2,16 @@ package datastr;
 
 import java.util.ArrayList;
 
-public class MyArrayList {
+public class MyArrayList<Ttype> {
 	//mainīgie
-	private char[] list;
+	private Ttype[] list;
 	private int howManyElements = 0;
 	private final int DEFAULT_SIZE = 8;
 	private int size = DEFAULT_SIZE;
 	
 	//konstruktori
 	public MyArrayList() {
-		list = new char[size];
+		list = (Ttype[]) new Object[size];
 	}
 	
 	public MyArrayList(int inputSize) {
@@ -19,7 +19,7 @@ public class MyArrayList {
 			size = inputSize;
 		}
 		
-		list = new char[size];
+		list = (Ttype[]) new Object[size];
 		
 	}
 	
@@ -63,7 +63,7 @@ public class MyArrayList {
 	//resize
 	private void resize() {
 		int newSize = (howManyElements < 200) ? (size * 2) : (int)(size * 1.5);
-		char[] newList = new char[newSize];
+		Ttype[] newList = (Ttype[]) new Object[newSize];
 		
 		for(int i = 0; i < howManyElements; i++) {
 			newList[i] = list[i];
@@ -75,7 +75,7 @@ public class MyArrayList {
 		
 	}
 
-	public void add(char element) {
+	public void add(Ttype element) {
 		if(isFull()) {
 			resize();
 		}
@@ -84,7 +84,7 @@ public class MyArrayList {
 		//howManyElements++; <- palielināšanu veikt cita koda rindiņā
 	}
 	
-	public void add(char element, int index) throws IllegalArgumentException  {
+	public void add(Ttype element, int index) throws IllegalArgumentException  {
 		if(index < 0){
 			throw new IllegalArgumentException("Nav iespējams pievienot elementu, jo indekss ir negatīvs");
 		}
@@ -130,13 +130,13 @@ public class MyArrayList {
 			list[i] = list[i+1];
 		}
 		
-		list[howManyElements-1] = ' ';//priekš referenču vērtībām būs null
+		list[howManyElements-1] = null;//priekš referenču vērtībām būs null
 		howManyElements--; 
 		//abas iepriekšējas koda rindas var optimizēt -> list[--howManyElements] = ' ';
 
 	}
 
-	public char get(int index) throws Exception {
+	public Ttype get(int index) throws Exception {
 		if(isEmpty()) {
 			throw new Exception("Saraksts ir tukšs, līdz ar to nevar iegūt elementu");
 		}
@@ -153,14 +153,14 @@ public class MyArrayList {
 	}
 	
 	
-	public ArrayList<Integer> search(char element) throws Exception{
+	public ArrayList<Integer> search(Ttype element) throws Exception{
 		if(isEmpty()) {
 			throw new Exception("Saraksts ir tukšs, līdz ar to nav ieespējams veikt elementa meklēšanu");
 		}
 		
 		ArrayList<Integer> indexArrayList = new ArrayList<Integer>();
 		for(int i = 0; i < howManyElements; i++) {
-			if(list[i] == element) {
+			if(list[i].equals(element)) {//referencu datu tipiem jjāizmanto equals salīdzinašanā
 				indexArrayList.add(i);
 			}
 		}
@@ -174,7 +174,7 @@ public class MyArrayList {
 		
 	}
 	
-	public char[] getNextElements(char element) throws Exception{
+	public Ttype[] getNextElements(Ttype element) throws Exception{
 		ArrayList<Integer> arrayListForIndexes = search(element);
 		
 		int howManyNextElements = arrayListForIndexes.size();
@@ -184,7 +184,7 @@ public class MyArrayList {
 			howManyNextElements--;
 		}
 		
-		char[] nextElements = new char[howManyNextElements];
+		Ttype[] nextElements = (Ttype[]) new Object[howManyNextElements];
 		int indexForNextElementArray = 0;
 		
 		for(int i = 0; i < howManyNextElements; i++) {
@@ -204,8 +204,9 @@ public class MyArrayList {
 		//TODO ja vēlas, var parbaudīt,ka ir tikai 1 elements		
 		for(int i = 0; i < howManyElements; i++) {
 			for(int j = 0; j < howManyElements; j++) {
-				if(list[i] > list[j]) {
-					char temp = list[i];
+				//if(list[i] > list[j]) {
+				if( ((Comparable)list[i]).compareTo(list[j]) > 0) {
+					Ttype temp = list[i];
 					list[i] = list[j];
 					list[j] = temp;
 				}
@@ -233,7 +234,7 @@ public class MyArrayList {
 		System.gc();
 		howManyElements = 0;
 		size = DEFAULT_SIZE;
-		list = new char[size];
+		list = (Ttype[]) new Object[size];
 		
 	}
 	
