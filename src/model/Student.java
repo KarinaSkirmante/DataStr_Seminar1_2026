@@ -1,7 +1,7 @@
 package model;
 
 //modelu klase
-public class Student {
+public class Student implements Comparable<Student>{
 	//1. mainigie
 	private long studId;
 	private String name;
@@ -90,6 +90,20 @@ public class Student {
 		// Piemers, 1: Karina Skirmante (121212-12345)
 		String result = studId + ": " + name + " " + surname + " (" + personCode + ")";
 		return result;
+	}
+
+	@Override
+	public int compareTo(Student student2) {
+		if(surname.charAt(0) > student2.surname.charAt(0)) {
+			return 1;
+		}
+		else if(surname.charAt(0) < student2.surname.charAt(0)) {
+			return -1;
+		}
+		else//ja abiem stduentiem uzvārds sākas ar vienu un to pašu burtu
+		{
+			return 0;
+		}
 	}
 	
 	
